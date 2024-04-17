@@ -4,8 +4,9 @@ import usecharacters from "../hooks/useCharacters";
 
 export const CharacterPage = () => {
 
-  const { characters, loading, error } = usecharacters(1);
   const [searchTerm, setSearchTerm] = useState<string>("");
+  const { characters, loading, error } = usecharacters(searchTerm);
+  
 
   return (
     <div className="container">
@@ -13,22 +14,21 @@ export const CharacterPage = () => {
 
       <input 
         type="text" 
-        className="text-field p-2"
+        className="text-field p-2 m-b-2"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
+        placeholder="Search character"
       />
-      <button 
-        className="btn btn-primary p-2"
-      >Search</button>
       {loading && <p>Loading...</p>}
-      {error && <p>{error}</p>}
-      <div className="characters__grid">
-        {characters.map((character) => (
-          <CharacterItem character={character} />
-        ))}
-      </div>
-      
-
+      {
+        error ? <p>{error}</p> : (
+          <div className="characters__grid">
+            {characters.map((character) => (
+              <CharacterItem character={character} key={character.id} />
+            ))}
+          </div>
+        )
+      }
     </div>
   )
 }
