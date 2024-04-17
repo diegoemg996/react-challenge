@@ -16,15 +16,15 @@ export const Sidebar = () => {
               To do
             </NavLink>
             <NavLink 
-              to="/news" 
+              to="/characters" 
               className={ 
                 ({isActive}: {isActive: boolean}) => `sidebar__menu-item p-4 ${ isActive ? 'sidebar__menu-item--active':'' }`
               }
             >
               <span>
-              <i className="fa-regular fa-newspaper m-r-2"></i>
+              <i className="fa-regular fa-user m-r-2"></i>
               </span>
-              News
+              Characters
             </NavLink>
         </div>
     </div>

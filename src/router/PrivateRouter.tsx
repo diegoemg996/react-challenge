@@ -1,5 +1,5 @@
 import { Navigate, Route, Routes } from "react-router-dom"
-import { NewsPage } from "../news/pages/NewsPage"
+import { CharacterPage } from "../characters/pages/CharacterPage"
 import { ToDoPage } from "../to-do/pages/ToDoPage"
 import { Sidebar } from "../shared/components/Sidebar"
 
@@ -11,10 +11,10 @@ export const PrivateRouter = () => {
 
           <div className="router__content container">
             <Routes>
-                <Route path="news" element={<NewsPage />} />
+                <Route path="characters" element={<CharacterPage />} />
                 <Route path="to-do" element={<ToDoPage />} />
 
-                <Route path="/" element={<Navigate to="/news" />} />
+                <Route path="/" element={<Navigate to="/to-do" />} />
             </Routes>
           </div>
         </div>

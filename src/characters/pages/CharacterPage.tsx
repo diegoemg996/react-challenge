@@ -1,15 +1,15 @@
 import { useState } from "react";
-import { NewsItem } from "../components/NewsItem";
-import useNews from "../hooks/useNews";
+import { CharacterItem } from "../components/CharacterItem";
+import usecharacters from "../hooks/useCharacters";
 
-export const NewsPage = () => {
+export const CharacterPage = () => {
 
-  const { news, loading, error } = useNews("technology");
+  const { characters, loading, error } = usecharacters(1);
   const [searchTerm, setSearchTerm] = useState<string>("");
 
   return (
     <div className="container">
-      <h1 className="m-t-3">News</h1>
+      <h1 className="m-t-3">Characters</h1>
 
       <input 
         type="text" 
@@ -22,12 +22,9 @@ export const NewsPage = () => {
       >Search</button>
       {loading && <p>Loading...</p>}
       {error && <p>{error}</p>}
-      <div className="news__grid">
-        {news.map((article) => (
-          (
-            !!article.author && <NewsItem key={article.title} article={article} />
-          )
-          
+      <div className="characters__grid">
+        {characters.map((character) => (
+          <CharacterItem character={character} />
         ))}
       </div>
       
