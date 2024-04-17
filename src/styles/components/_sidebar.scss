@@ -1,0 +1,32 @@
+@import '../utils/variables';
+
+.sidebar__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+    min-width: 200px;
+    background: #000042;
+}
+
+.sidebar__menu {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.sidebar__menu-item{
+    display: flex;
+    align-items: center;
+    color: #fff;
+    text-decoration: none;
+    transition: background-color 0.3s;
+
+    &:hover {
+        background-color: lighten($color: #000042, $amount: 10%)
+    }
+}
+
+.sidebar__menu-item--active {
+    background-color: lighten($color: #000042, $amount: 10%);
+}
