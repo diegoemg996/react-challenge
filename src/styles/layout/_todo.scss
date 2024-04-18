@@ -11,13 +11,14 @@
 .todo__item {
     display: flex;
     align-items: center;
-    border-radius: 10px;
+    border-radius: 5px;
     border: 1px solid #ccc;
-    box-shadow: 1px 1px 2px 0px rgba(36,36,36,0.50);
+    box-shadow: 1px 1px 2px 0px rgba(36,36,36,0.30);
     transition: all 0.3s;
+    background: white;
 
     &:hover{
-        box-shadow: 1px 1px 3px 0px rgba(36,36,36,0.90);
+        box-shadow: 1px 1px 3px 0px rgba(36,36,36,0.60);
         transform: translateY(-1px);
     }
 }

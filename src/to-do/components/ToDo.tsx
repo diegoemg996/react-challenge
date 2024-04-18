@@ -8,7 +8,7 @@ export const ToDo = () => {
     const [newTask, setNewTask] = useState<string>('')
     
     const handleAdd = (task: string) => {
-        if (!task.trim()) return; // Input validation
+        if (!task.trim()) return;
         setToDoList(prevState => [
             ...prevState,
             {
@@ -59,31 +59,45 @@ export const ToDo = () => {
             <h3 className="m-t-3">Pending</h3>
             <hr />
             <ul className="m-t-3">
-                {toDoList.map(todo => (
-                    !todo.completed && (
-                        <TodoItem
-                            task={todo}
-                            handleDelete={handleDelete}
-                            handleToggle={handleToggle}
-                            key={todo.id}
-                        />
+                {
+                    toDoList.length === 0 && (
+                        <p className="todo__item p-3 m-1">No tasks yet</p>
                     )
-                ))}
+                }
+                {
+                    toDoList.map(todo => (
+                        !todo.completed && (
+                            <TodoItem
+                                task={todo}
+                                handleDelete={handleDelete}
+                                handleToggle={handleToggle}
+                                key={todo.id}
+                            />
+                        )
+                    ))
+                }
             </ul>
 
             <h3 className="m-t-3">Completed</h3>
             <hr />
             <ul className="m-t-3">
-                {toDoList.map(todo => (
-                    todo.completed && (
-                        <TodoItem
-                            task={todo}
-                            handleDelete={handleDelete}
-                            handleToggle={handleToggle}
-                            key={todo.id}
-                        />
+                {
+                    toDoList.length === 0 && (
+                        <p className="todo__item p-3 m-1">No tasks completed</p>
                     )
-                ))}
+                }
+                {
+                    toDoList.map(todo => (
+                        todo.completed && (
+                            <TodoItem
+                                task={todo}
+                                handleDelete={handleDelete}
+                                handleToggle={handleToggle}
+                                key={todo.id}
+                            />
+                        )
+                    ))
+                }
             </ul>
         </div>
     )

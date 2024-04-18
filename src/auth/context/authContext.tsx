@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect} from 'react';
 import { auth } from '../firebase';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth';
 
 interface Props {
   children: React.ReactNode
@@ -24,10 +24,9 @@ export const AuthProvider = ({ children } : Props) => {
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((currentUser) => {
+    const unsubscribe = onAuthStateChanged(auth,(currentUser) => {
       if (currentUser) {
         setUser({ uid: currentUser.uid, email: currentUser.email || '' });
-        console.log(currentUser);
       } else {
         setUser(null);
       }

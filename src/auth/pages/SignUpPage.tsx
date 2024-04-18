@@ -21,7 +21,7 @@ export const SignUpPage = () => {
 
     try {
       await signUp(email, password)
-      navigate('/')
+      navigate('/user', {replace: true})
     } catch (error) {
       setError('Invalid credentials')
     }

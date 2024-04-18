@@ -1,11 +1,21 @@
-import { NavLink } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
+import { useAuth } from "../../auth/context/useAuth"
 
 export const Sidebar = () => {
+
+  const {signOut} = useAuth()
+  const navigate = useNavigate()
+
+  const handleSignOut = async () => {
+    await signOut()
+    navigate('/auth/login')
+  }
+
   return (
     <div className="sidebar__container">
         <div className="sidebar__menu">
             <NavLink 
-              to="/to-do" 
+              to="/user/to-do" 
               className={ 
                 ({isActive}: {isActive: boolean}) => `sidebar__menu-item p-4 ${ isActive ? 'sidebar__menu-item--active':'' }`
               }
@@ -16,17 +26,26 @@ export const Sidebar = () => {
               To do
             </NavLink>
             <NavLink 
-              to="/characters" 
+              to="/user/characters" 
               className={ 
                 ({isActive}: {isActive: boolean}) => `sidebar__menu-item p-4 ${ isActive ? 'sidebar__menu-item--active':'' }`
               }
             >
               <span>
-              <i className="fa-regular fa-user m-r-2"></i>
+                <i className="fa-regular fa-user m-r-2"></i>
               </span>
               Characters
             </NavLink>
         </div>
-    </div>
+        <button 
+          className="btn btn-primary p-4"
+          onClick={handleSignOut}
+        >
+          <span>
+            <i className="fa-solid fa-right-from-bracket"></i>
+          </span>
+              Sign Out
+        </button>
+      </div>
   )
 }

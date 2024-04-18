@@ -22,7 +22,7 @@ export const CharacterPage = () => {
       {loading && <p>Loading...</p>}
       {
         error ? <p>{error}</p> : (
-          <div className="characters__grid">
+          <div className="characters__grid m-b-3">
             {characters.map((character) => (
               <CharacterItem character={character} key={character.id} />
             ))}
