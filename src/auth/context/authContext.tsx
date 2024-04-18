@@ -1,9 +1,13 @@
-import { createContext, useState, useEffect} from 'react';
-import { auth } from '../firebase';
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth';
+import { createContext, useState, useEffect } from "react";
+import { auth } from "../../config/firebase";
+import {
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 
 interface Props {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 interface User {
@@ -18,15 +22,17 @@ interface AuthContextType {
   signOut: () => Promise<void>;
 }
 
-export const AuthContext = createContext<AuthContextType | undefined>(undefined);
+export const AuthContext = createContext<AuthContextType | undefined>(
+  undefined
+);
 
-export const AuthProvider = ({ children } : Props) => {
+export const AuthProvider = ({ children }: Props) => {
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth,(currentUser) => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
-        setUser({ uid: currentUser.uid, email: currentUser.email || '' });
+        setUser({ uid: currentUser.uid, email: currentUser.email || "" });
       } else {
         setUser(null);
       }
@@ -53,5 +59,7 @@ export const AuthProvider = ({ children } : Props) => {
     signOut,
   };
 
-  return <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
+  );
 };

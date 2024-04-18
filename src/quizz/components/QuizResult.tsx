@@ -22,7 +22,7 @@ export const QuizResult = ({ score, totalQuestions, resetQuiz }: Props) => {
         Quiz finished! Your score: {score}/{totalQuestions}
       </h3>
       <div className="quiz__buttons">
-        <button className="btn btn-primary p-2" onClick={resetQuiz}>
+        <button className="quiz__button" onClick={resetQuiz}>
           Restart Quiz
         </button>
       </div>

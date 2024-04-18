@@ -20,8 +20,8 @@ export const AppRouter = () => {
           </Route>
         </Route>
 
-        <Route path="/user" element={<UserLayout />}>
-          <Route element={<PrivateRoutes />}>
+        <Route element={<PrivateRoutes />}>
+          <Route path="/user" element={<UserLayout />}>
             <Route index element={<ToDoPage />} />
             <Route path="to-do" element={<ToDoPage />} />
             <Route path="characters" element={<CharacterPage />} />
@@ -29,7 +29,7 @@ export const AppRouter = () => {
           </Route>
         </Route>
 
-        <Route path="/" element={<LoginPage />} />
+        <Route path="/" element={<PublicRoutes />} />
       </Routes>
     </>
   );

@@ -16,13 +16,13 @@ export const QuizBox = ({ question, onAnswer }: Props) => {
       <h3>{decode(question.question)}</h3>
       <div className="quiz__buttons">
         <button
-          className="btn btn-primary p-2 m-r-2"
+          className="quiz__button p-2 m-r-2 "
           onClick={() => handleAnswer("True")}
         >
           True
         </button>
         <button
-          className="btn btn-secondary p-2"
+          className="quiz__button p-2"
           onClick={() => handleAnswer("False")}
         >
           False

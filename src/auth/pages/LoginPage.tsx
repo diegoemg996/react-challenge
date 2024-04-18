@@ -1,32 +1,29 @@
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
-import { useAuth } from "../context/useAuth"
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/useAuth";
 
 export const LoginPage = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [error, setError] = useState('')
-
-  const {signIn} = useAuth()
-  const navigate = useNavigate()
-
+  const { signIn } = useAuth();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
 
     if (!email || !password) {
-      return
+      return;
     }
 
     try {
-      await signIn(email, password)
-      navigate('/user', {replace: true})
+      await signIn(email, password);
+      navigate("/user/to-do", { replace: true });
     } catch (error) {
-      setError('Invalid credentials')
+      setError("Invalid credentials");
     }
-  }
-
+  };
 
   return (
     <div className="login__container">
@@ -35,9 +32,9 @@ export const LoginPage = () => {
         <form onSubmit={handleSubmit}>
           <div>
             <label htmlFor="email">Email</label>
-            <input 
-              type="email" 
-              id="email" 
+            <input
+              type="email"
+              id="email"
               className="text-field"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -45,19 +42,31 @@ export const LoginPage = () => {
           </div>
           <div>
             <label htmlFor="password">Password</label>
-            <input 
-              type="password" 
-              id="password" 
+            <input
+              type="password"
+              id="password"
               className="text-field"
               value={password}
-              onChange={(e) => setPassword(e.target.value)} 
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          {error && <p className="form__error m-t-2">{error}</p>}
-          <button type="submit" className="btn btn-primary p-3 m-t-3">Login</button>
-        </form>
 
+          <p className="m-t-2">
+            Don't have an account?
+            <span
+              onClick={() => navigate("/auth/signup")}
+              className="login__link m-l-1"
+            >
+              Sign Up
+            </span>
+          </p>
+
+          {error && <p className="form__error m-t-2">{error}</p>}
+          <button type="submit" className="btn btn-primary p-3 m-t-3">
+            Login
+          </button>
+        </form>
       </div>
     </div>
-  )
-}
+  );
+};
