@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Character, CharactersResponse } from '../interfaces/characters.interface';
 
-const useCharacters = (searchTerm: string = "") => {
+export const useCharacters = (searchTerm: string = "") => {
 
   const baseUrl = `https://rickandmortyapi.com/api/character/?`;
 
@@ -31,5 +31,3 @@ const useCharacters = (searchTerm: string = "") => {
 
   return { loading, error, characters };
 };
-
-export default useCharacters;
