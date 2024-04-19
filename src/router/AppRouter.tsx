@@ -7,30 +7,26 @@ import { UserLayout } from "../layout/UserLayout";
 import { PrivateRoutes } from "./PrivateRoutes";
 import { PublicRoutes } from "./PublicRouter";
 import { QuizzPage } from "../quizz/page/QuizzPage";
+import { CharacterInfo } from "../characters/pages/CharacterInfo";
 
 export const AppRouter = () => {
   return (
-    <>
-      <Routes>
-        <Route path="/auth">
-          <Route element={<PublicRoutes />}>
-            <Route index element={<LoginPage />} />
-            <Route path="login" element={<LoginPage />} />
-            <Route path="signup" element={<SignUpPage />} />
-          </Route>
-        </Route>
+    <Routes>
+      <Route path="/auth" element={<PublicRoutes />}>
+        <Route index element={<LoginPage />} />
+        <Route path="login" element={<LoginPage />} />
+        <Route path="signup" element={<SignUpPage />} />
+      </Route>
 
-        <Route element={<PrivateRoutes />}>
-          <Route path="/user" element={<UserLayout />}>
-            <Route index element={<ToDoPage />} />
-            <Route path="to-do" element={<ToDoPage />} />
-            <Route path="characters" element={<CharacterPage />} />
-            <Route path="quizz" element={<QuizzPage />} />
-          </Route>
+      <Route path="/user" element={<PrivateRoutes />}>
+        <Route element={<UserLayout />}>
+          <Route index element={<ToDoPage />} />
+          <Route path="to-do" element={<ToDoPage />} />
+          <Route path="characters" element={<CharacterPage />} />
+          <Route path="characters/:id" element={<CharacterInfo />} />
+          <Route path="quizz" element={<QuizzPage />} />
         </Route>
-
-        <Route path="/" element={<PublicRoutes />} />
-      </Routes>
-    </>
+      </Route>
+    </Routes>
   );
 };

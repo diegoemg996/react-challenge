@@ -11,22 +11,22 @@ export const useCharacters = (searchTerm: string = "") => {
   const [characters, setCharacters] = useState<Character[]>([]);
 
   useEffect(() => {
-      const fetchData = async () => {
-        try{
-          setLoading(true);
-            let url = `${baseUrl}name=${searchTerm}`;
-            const response = await axios.get<CharactersResponse>(url);
-            setCharacters(response.data.results);
-            setLoading(false);
-            setError(null);
-          } catch (error) {
-            setError('Error fetching data');
-            setLoading(false);
-          }
-      };
-
       fetchData();
   }, [searchTerm]);
+
+  const fetchData = async () => {
+    try {
+      setLoading(true);
+      let url = `${baseUrl}name=${searchTerm}`;
+      const response = await axios.get<CharactersResponse>(url);
+      setCharacters(response.data.results);
+      setLoading(false);
+      setError(null);
+    } catch (error) {
+      setError('Error fetching data');
+      setLoading(false);
+    }
+  }
 
 
   return { loading, error, characters };

@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { Character } from "../interfaces/characters.interface";
 
 interface Props {
@@ -5,7 +6,9 @@ interface Props {
 }
 
 export const CharacterItem = ({ character }: Props) => {
-  const { id, name, image, status, species } = character;
+  const { id, name, image } = character;
+
+  const navigate = useNavigate();
 
   return (
     <div key={id} className="characters__card">
@@ -13,8 +16,12 @@ export const CharacterItem = ({ character }: Props) => {
 
       <div className="characters__card-content p-3">
         <h3 className="characters__card-title">{name}</h3>
-        <p className="characters__card-text">Status: {status}</p>
-        <p className="characters__card-text">Species: {species}</p>
+        <button
+          className="btn btn-primary p-3"
+          onClick={() => navigate(`/user/characters/${id}`)}
+        >
+          See more
+        </button>
       </div>
     </div>
   );

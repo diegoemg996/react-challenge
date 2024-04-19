@@ -9,7 +9,18 @@
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  position: relative;
+}
+
+.character__info {
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.characters__card-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .characters__card img {
@@ -22,6 +33,3 @@
     transform: scale(1.1);
   }
 }
-
-
-
