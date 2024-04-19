@@ -27,6 +27,9 @@ export const AppRouter = () => {
           <Route path="quizz" element={<QuizzPage />} />
         </Route>
       </Route>
+
+      <Route path="/" element={<PrivateRoutes />} />
+      <Route path="*" element={<h1>Not Found</h1>} />
     </Routes>
   );
 };
